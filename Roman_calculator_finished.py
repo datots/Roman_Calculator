@@ -8,17 +8,24 @@ def Roman_numbers_input():
     input_operation = None
     while input_operation != 'EXIT':
         roman_to_arab()                  # input and translating roman numbers to arab num
-        input_operation = input('input operation!').replace(' ','').upper()
-        if input_operation != "+" and input_operation != "-" and input_operation != "*" and input_operation != "/" and input_operation != "EXIT":
-            print('wrong operation! please, try to input again from first num!')
-            arab_num_list.clear()        # clear subjects which were written before 
-            operators_list.clear()       #clear subjects which were written before
+        exit_inp = opInp()
+        if exit_inp == 'EXIT':
             input_operation = 'EXIT'
-            Roman_numbers_input()        #In case of wrong input it starts the programm again
-        if input_operation == '+' or input_operation == '-' or input_operation == '*' or input_operation == '/' or input_operation != 'EXIT':
+ 
+def opInp():     #function of creating list of operations
+    try:
+        input_operation = input('input operation or if you want to finish input "exit": ').replace(' ','').upper()
+        if input_operation in op_list and input_operation != 'EXIT':
             operators_list.append(input_operation)
         elif input_operation == 'EXIT':
             equation()
+            return 'EXIT'
+        else:
+            op_list.index(input_operation)
+    except Exception:    # if wrong input - input again
+        print('wrong input, input again!')
+        opInp()
+ 
         
 # function of translating roman numbers to arab numbers
 def roman_to_arab():
@@ -97,10 +104,11 @@ def integerToRoman(A):
 
 
 #body
+op_list = ['+', '-', '/', '*','EXIT'] # list of operators for function
 operators_list = []
 arab_num_list = []
 
-print('Greeting! This is rome numbers calculator! It can calculate rome numbers from 1 to 100')
+print('Greeting! This is rome numbers calculator! It can calculate rome numbers from 1 to 1000')
 print('Please, input only rome number!')
 
 Roman_numbers_input()
@@ -114,6 +122,9 @@ if arab_num_list[0] <= 0:
     
 #show result
 integerToRoman(arab_num_list[0])
+
+
+
 
 
 
