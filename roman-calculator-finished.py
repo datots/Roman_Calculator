@@ -119,7 +119,12 @@ if arab_num_list[0] <= 0:
     arab_num_list.clear()      #clear subjects which were written before  
     operators_list.clear()     #clear subjects which were written before
     Roman_numbers_input()
-    
+if arab_num_list[0] > 1000:
+    print('Your score is more than 1000! Please, try again!')
+    arab_num_list.clear()      #clear subjects which were written before  
+    operators_list.clear()     #clear subjects which were written before
+    Roman_numbers_input()
+
 #show result
 integerToRoman(arab_num_list[0])
 
